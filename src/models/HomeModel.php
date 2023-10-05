@@ -9,10 +9,19 @@ class HomeModel {
     $this->db = new DB();
   }
 
-  public function getData() {
-    $query = "SELECT * FROM my_table";
+  public function getDataProduct() {
+    $query = "SELECT * FROM productos";
     $result = $this->db->query($query);
-    return $result;
+    $infoProducts = array();
+    foreach ($result as $row) {
+       $infoProducts[] = array(
+        'codigo' => $row['id_product'],
+        'cant' => $row['codigo']
+    );   
+  }
+  $Products=json_encode($infoProducts);
+  $this->db->close();
+    return $Products;
   }
 }
 

@@ -1,8 +1,7 @@
 <?php
 require_once '../src/config.php';
 require_once '../src/db.php';
-require_once '../src/models/HomeModel.php';
-require_once '../src/controllers/HomeController.php';
+require_once '../src/controllers/LoginController.php';
 
-$controller = new HomeController();
+$controller = new LoginController();
 $controller->index();

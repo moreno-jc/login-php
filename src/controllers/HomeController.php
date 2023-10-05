@@ -1,13 +1,21 @@
 <?php
+// Include the HomeModel class
+require_once('../src/models/HomeModel.php');
+require_once '../src/controllers/LoginController.php';
 
-require_once __DIR__ . '/../models/HomeModel.php';
 
 class HomeController {
-  
+
   public function index() {
-    $model = new HomeModel();
-    $data = $model->getData();
-    include __DIR__ . '/../views/home.php';
+    session_start();
+
+    $homeModel = new HomeModel ();
+    $data = $homeModel->getData();
+
+    include '../src/views/header.php';
+    include '../src/views/home.php';
+    include '../src/views/footer.php';
+
   }
   
 }

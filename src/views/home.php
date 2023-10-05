@@ -1,33 +1,30 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>My PHP Project</title>
-	<link rel="stylesheet" type="text/css" href="../public/assets/css/style.css">
-</head>
-<body>
-	<header>
-		<h1>Welcome to My PHP Project</h1>
-	</header>
-	<main>
-		<?php
-			// Include the HomeModel class
-			require_once('../src/models/HomeModel.php');
 
-			// Create a new instance of the HomeModel class
-			$model = new HomeModel();
+<main>
+    <div>
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+                <a class="navbar-brand" href="#"><img src="./assets/otela.jpg" style="width: 50px; height: auto;"></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="">Rutas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="">Servicios</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <div class="row ">
+        <div class="col-md-9 offset-md-1 text-center ColumAnuncio">
+            <img src="./assets/anuncio_1.png" class="img-fluid">
+        </div>
+    </div>
 
-			// Get the data from the database
-			$data = $model->getData();
-
-			// Display the data
-			foreach ($data as $row) {
-				echo '<p>' . $row['title'] . '</p>';
-				echo '<p>' . $row['content'] . '</p>';
-			}
-		?>
-	</main>
-	<footer>
-		<p>&copy; My PHP Project</p>
-	</footer>
-</body>
-</html>
+       
+    </main>
