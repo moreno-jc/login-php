@@ -5,3 +5,5 @@ require_once '../src/controllers/LoginController.php';
 
 $controller = new LoginController();
 $controller->index();
+
+//test
