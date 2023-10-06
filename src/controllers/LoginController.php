@@ -2,17 +2,11 @@
 // Include the HomeModel class
 require_once __DIR__ . '/../models/UserModel.php';
 require_once __DIR__ . '/../models/AuthModel.php';
-require_once __DIR__ . '/../db.php';
-
+session_start();
 
 class LoginController {
-  private $db;
 
-    public function __construct($db) {
-        $this->db = $db;
-    }
-
-  public function index() {
+  public function index($msgLogin) {
     include __DIR__ . '/../views/header.php';
     include __DIR__ . '/../views/login.php';
     include __DIR__ . '/../views/footer.php';
@@ -20,29 +14,21 @@ class LoginController {
 
   public function login($username, $password) {
 
-    $userModel =  new UserModel($this->db);
-    $user = $userModel->getUserByUsername($username);
+    $authModel =  new AuthModel();
+    $auth = $authModel->authenticate($username,$password);
 
-    if (!$user) {
-        $this->showError('Invalid username or password');
-        return;
+    if (!$auth) {
+        $msgError= '<div class="alert alert-danger" role="alert"> Tu usuario o contraseña incorrectos! </div>';
+        $this->index($msgError);
+    }else{
+      $_SESSION['username'] = $username;
+      header('Location: /terra-php/public/index.php'); 
+
     }
 
-    $authModel = new AuthModel();
-    $isAuthenticated = $authModel->authenticate($user, $password);
-
-    if (!$isAuthenticated) {
-        $this->showError('Invalid username or password');
-        return;
-    }
-
-    session_start();
-    $_SESSION['user_id'] = $user['id'];
-    header('Location: /home.php');
   }
-
-  private function showError($message) {
-      require_once _DIR_ . '/../views/error.php';
+  public function showError($message) {
+      require_once __DIR__ . '/../views/error.php';
   } 
 }
 

@@ -17,6 +17,9 @@
                         </li>
                     </ul>
                 </div>
+                <button type="button" class="btn btn-danger ms-5">
+                        <a href="./login.php?action=logout" style="text-decoration:none; color: white;">Cerrar Sesion</a>
+                </button>
             </div>
         </nav>
     </div>

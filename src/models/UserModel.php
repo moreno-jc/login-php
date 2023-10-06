@@ -1,19 +1,25 @@
 <?php
-
 require_once(__DIR__ . '/../db.php');
 
 class UserModel {
     private $db;
 
-    public function __construct($db) {
-        $this->db = $db;
+    public function __construct() {
+        $this->db = new DB();
     }
 
     public function getUserByUsername($username) {
-        $stmt = $this->db->prepare("SELECT * FROM terra.agentes WHERE correo = ?");
-        $stmt->execute([$username]);
-        return $stmt->fetch();
+        $query = "SELECT * FROM agentes WHERE correo = '$username'";
+        $result = $this->db->query($query);
+        
+        if ($result->num_rows === 1) {
+            $user = $result->fetch_assoc();
+            return $user;
+        } else {
+            return null;
+        }
     }
-}
+
+ }
 
 ?>

@@ -1,9 +1,14 @@
 <?php
-require_once '../src/config.php';
-require_once '../src/db.php';
+
 require_once '../src/controllers/LoginController.php';
+require_once '../src/controllers/HomeController.php';
 
-$controller = new LoginController();
-$controller->index();
 
-//test
+if (isset($_SESSION['username'] )) {
+    $controller = new HomeController();
+    $controller->index();
+
+} else {
+    header('Location: /terra-php/public/login.php'); 
+    exit();
+}
